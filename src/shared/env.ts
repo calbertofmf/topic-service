@@ -15,7 +15,7 @@ const EnvSchema = z.object({
   NODE_ENV: z
     .enum(["development", "production", "test"])
     .default("development"),
-  MONGODB_URL: z.string().url(),
+  MONGO_URL: z.string().url(),
   DB_NAME: z.string(),
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
 });
@@ -32,7 +32,7 @@ if (!success) {
 export const env = {
   PORT: data.PORT,
   NODE_ENV: data.NODE_ENV,
-  MONGODB_URL: data.MONGODB_URL,
+  MONGO_URL: data.MONGO_URL,
   LOG_LEVEL: data.LOG_LEVEL,
   DB_NAME: data.DB_NAME,
 };

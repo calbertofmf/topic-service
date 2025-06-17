@@ -1,6 +1,19 @@
-version: '3.8'
+version: "3.8"
+
 services:
-  mongodb:
+  app:
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/topic_service_db
+
+  mongo:
     image: mongo:6
     ports:
       - "27017:27017"

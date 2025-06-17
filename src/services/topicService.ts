@@ -1,18 +1,36 @@
 import { Topic } from "../models/topic";
 import { TopicFilter } from "../models/topicFilter";
 import { TopicServiceInterface } from "./interfaces/topicServiceInterface";
+import { TopicRepositoryInterface } from "./repositories/interfaces/topicRepository";
 
 export class TopicService implements TopicServiceInterface {
-    private constructor(){}
-    createTopic(topic: Topic): Promise<Topic> {
-        throw new Error("Method not implemented.");
-    }
+  private constructor(private topicRepository: TopicRepositoryInterface) {}
+  async updateTopic({
+    id,
+    name,
+    content,
+  }: {
+    id: string;
+    name: string;
+    content: string;
+  }): Promise<Topic> {
+    return await this.topicRepository.update({
+    id,
+    name,
+    content,
+  });
+  }
+  async createTopic(topic: Topic): Promise<Topic> {
+    return await this.topicRepository.add(topic);
+  }
 
-    getTopics(filters: TopicFilter): Promise<Topic[]> {
-        throw new Error("Method not implemented.");
-    }
-    
-    static create(): TopicServiceInterface {
-        return new TopicService();
-    }
+  async getTopics(filters: TopicFilter): Promise<Topic[]> {
+    return await this.topicRepository.get(filters);
+  }
+
+  static create(
+    topicRepository: TopicRepositoryInterface
+  ): TopicServiceInterface {
+    return new TopicService(topicRepository);
+  }
 }
