@@ -36,12 +36,7 @@ export class TopicDb implements TopicRepositoryInterface {
 
   async get(filter: TopicFilter): Promise<Topic[]> {
     const collection = await this.getCollection();
-    const { _id, ...rest } = filter;
-    const mongoDbFilter = {
-      ...(_id && { _id: new ObjectId(filter._id) }),
-      ...rest,
-    };
-    const result = await collection.find<Topic>(mongoDbFilter).toArray();
+    const result = await collection.find<Topic>(filter).toArray();
     return result;
   }
 
