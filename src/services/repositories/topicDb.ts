@@ -23,7 +23,7 @@ export class TopicDb implements TopicRepositoryInterface {
     }
     const latest = topics[0];
     const newVersion = (latest?.version || 0) + 1;
-    await collection.updateOne({ id: latest.id }, { $set: { latest: false } });
+    await collection.updateOne({ id: latest.id }, { $set: { latest: false, updatedAt: new Date().toISOString() } });
     const newTopic = new Topic({
       id: latest.id,
       version: newVersion,
