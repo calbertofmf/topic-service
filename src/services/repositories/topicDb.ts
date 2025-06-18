@@ -1,7 +1,7 @@
 import { Collection, ObjectId } from "mongodb";
 import { Topic } from "../../models/topic";
 import { TopicFilter } from "../../models/topicFilter";
-import { connectMongo } from "../../util/mongoClient";
+import { connectMongo } from "../../utils/mongoClient";
 import { TopicRepositoryInterface } from "./interfaces/topicRepository";
 
 export class TopicDb implements TopicRepositoryInterface {
