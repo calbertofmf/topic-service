@@ -7,7 +7,8 @@ export default class TopicController {
   constructor(private topicService: TopicServiceInterface) {}
 
   createTopic = async (req: Request, res: Response, next: NextFunction) => {
-    const topic = await this.topicService.createTopic(new Topic(req.body));
+    const { parentTopicId, ...rest } = req.body;
+    const topic = await this.topicService.createTopic(new Topic(rest), parentTopicId);
     res.status(201).json(topic);
   };
 

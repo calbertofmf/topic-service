@@ -29,7 +29,7 @@ export class TopicDb implements TopicRepositoryInterface {
       version: newVersion,
       name,
       content,
-      parentTopicId: latest.parentTopicId,
+      parentTopic: latest.parentTopic,
     });
     return await this.add(newTopic);
   }
@@ -51,7 +51,7 @@ export class TopicDb implements TopicRepositoryInterface {
       latest,
       name,
       content,
-      parentTopicId,
+      parentTopic,
       version,
       id,
     } = topic;
@@ -61,7 +61,7 @@ export class TopicDb implements TopicRepositoryInterface {
       name,
       content,
       version: version || 1,
-      parentTopicId,
+      parentTopic,
       createdAt,
       updatedAt,
       latest,

@@ -20,7 +20,13 @@ export class TopicService implements TopicServiceInterface {
     content,
   });
   }
-  async createTopic(topic: Topic): Promise<Topic> {
+  async createTopic(topic: Topic, parentTopicId?: string): Promise<Topic> {
+    if(parentTopicId){
+      const filter = new TopicFilter();
+      filter.id = parentTopicId;
+      const topics = await this.getTopics(filter);
+      topic.parentTopic = topics[0];
+    }
     return await this.topicRepository.add(topic);
   }
 

@@ -4,7 +4,7 @@ export class Topic {
   public content: string;
   public version: number;
   public latest: boolean;
-  public parentTopicId?: string;
+  public parentTopic?: Topic;
   public createdAt: string;
   public updatedAt: string;
 
@@ -13,20 +13,20 @@ export class Topic {
     name,
     content,
     version,
-    parentTopicId,
+    parentTopic,
   }: {
     id?: string;
     name: string;
     content: string;
     version: number;
-    parentTopicId?: string;
+    parentTopic?: Topic;
   }) {
     this.id = id;
     this.name = name;
     this.content = content;
     this.version = version;
     this.latest = true;
-    this.parentTopicId = parentTopicId;
+    this.parentTopic = parentTopic;
     this.createdAt = new Date().toISOString();
     this.updatedAt = new Date().toISOString();
   }

@@ -4,7 +4,6 @@ export const CreateTopicSchema = z.object({
   body: z.object({
     name: z.string().min(1),
     content: z.string().min(1),
-    version: z.string().min(1),
     parentTopicId: z.string().optional(),
   })
 });
