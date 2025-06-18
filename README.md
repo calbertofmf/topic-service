@@ -101,9 +101,15 @@ docker-compose up --build
 
 | Method | Path                      | Description              |
 |--------|---------------------------|--------------------------|
-| GET    | `/api/v1/topics`          | List all topics by filters |
+| GET    | `/api/v1/topics`          | List topics by filter.   |
 | POST   | `/api/v1/topics`          | Create a new topic       |
 | PUT    | `/api/v1/topics/:id`      | Update an existing topic |
+
+---
+
+## 🛡️ Error Handling
+
+All errors propagate through a custom `ApiError` class and are formatted uniformly by the global error handler middleware.
 
 ---
 
@@ -132,11 +138,11 @@ docker-compose up --build
 
 ## ✅ Next Improvements
 
+- Authentication/Authorization (Role-based access)
 - **Jest** for unit and integration tests
 - **Supertest** for HTTP endpoint validation
 - Use DI (interfaces & repository) for testable code
 - Coverage reports and linting
-- Authentication/Authorization (Role-based access)
 - Input validation middleware for all endpoints
 - Swagger/OpenAPI docs
 - CI/CD integration (GitHub Actions)
